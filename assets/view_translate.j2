@@ -1,0 +1,52 @@
+<label for="sel_target_lang" style="text-align: left">Target language (source language is auto-detected)</label>
+
+<select name="sel_target_lang" id="sel_target_lang">
+    {% for k, v in langs_madlad400 %}
+    <option value="{{ k }}" {% if k=='en' %}selected{% endif %}>{{ v }}</option>
+    {% endfor %}
+</select>
+
+<button
+    id="btn_recapture"
+    onclick="_wuiEvent('recapture')"
+    style="display: {% if have_desktop_bbox %}block{% else %}none{% endif %};"
+>Read last screen area</button>
+
+<textarea name="txt_source" id="txt_source"></textarea>
+
+<button
+    id="btn_translate"
+    onclick="_wuiEvent('translate', [_wuiVal('#txt_source'), _wuiVal('#sel_target_lang')])"
+>Translate</button>
+
+<textarea name="txt_result" id="txt_result" disabled></textarea>
+
+<label for="sel_model" style="text-align: left">Model settings</label>
+
+<select
+    name="sel_model"
+    id="sel_model"
+    onchange="_wuiEvent('set_model', [this.value, _wuiChecked('#opt_nvidia')])"
+>
+    {% for model in models %}
+    <option
+        value="{{ model }}"
+        {% if model==opt_tr_model_variant %}selected{% endif %}
+    >{{ models_info[model][0] }}</option>
+    {% endfor %}
+</select>
+
+{% if can_use_nvidia %}
+<div class="rspacer">
+    <input
+        type="checkbox" {% if opt_tr_nvidia %}checked{% endif %}
+        id="opt_nvidia"
+        onchange="_wuiEvent('set_model', [_wuiVal('#sel_model'), this.checked])"
+    />
+    <label>Run on GPU (Nvidia only)</label>
+</div>
+{% endif %}
+
+<label
+    style="margin-top: 30px;"
+>{% for name,desc in models_info.values() %}<strong>{{ name }}</strong><br><br>{{ desc }}<br><br>{% endfor %}</label>

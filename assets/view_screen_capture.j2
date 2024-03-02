@@ -1,0 +1,88 @@
+<label>Screen capture options (no need to restart)</label>
+
+<div class="rspacer">
+    <input
+        type="checkbox" {% if opt_dt_append %}checked{% endif %}
+        onchange="_wuiEvent('set_opt_dt_append', [this.checked])"
+    />
+    <label>Append (add new text to the end of existing source text)</label>
+</div>
+
+<div class="rspacer">
+    <input
+        type="checkbox" {% if opt_dt_auto %}checked{% endif %}
+        onchange="_wuiEvent('set_opt_dt_auto', [this.checked])"
+    />
+    <label>Auto-translate (auto-trigger translation after reading new text)</label>
+</div>
+
+<label style="margin-top: 30px">Screen reader backend</label>
+
+<div class="rspacer">
+    <input
+        type="radio" {% if opt_dt_reader=="easyocr" %}checked{% endif %}
+        onchange="this.checked && _wuiEvent('set_opt_dt_reader', ['easyocr'])"
+        name="dt_opt_reader"
+    />
+    <label>EasyOCR (reads multiple languages)</label>
+</div>
+
+<div class="rspacer">
+    <input
+        type="radio" {% if opt_dt_reader=="mangaocr" %}checked{% endif %}
+        onchange="this.checked && _wuiEvent('set_opt_dt_reader', ['mangaocr'])"
+        name="dt_opt_reader"
+    />
+    <label>MangaOCR (reads Japanese only)</label>
+</div>
+
+<label style="margin-top: 30px">Screen reader language (only affects EasyOCR)</label>
+
+<select onchange="_wuiEvent('set_opt_dt_lang', [this.value])">
+    {% for k, v in langs_easyocr %}
+    <option value="{{ k }}" {% if k==opt_dt_lang %}selected{% endif %}>{{ v }}</option>
+    {% endfor %}
+</select>
+
+<label style="margin-top: 30px">Screen reader module controls:</label>
+
+<div class="rspacer">
+    <button
+    id="btn_dt_start"
+    onclick="_wuiEvent('dt_run', [])"
+    style="display: {% if dt_running %}none;{% else %}inline-block;{% endif %}"
+    >Start</button>
+    <button
+    id="btn_dt_stop"
+    onclick="_wuiEvent('dt_stop', [])"
+    style="display: {% if dt_running %}inline-block;{% else %}none;{% endif %}"
+    >Stop</button>
+    <button
+    id="btn_dt_restart"
+    onclick="_wuiEvent('dt_run', [])"
+    style="display: {% if dt_running %}inline-block;{% else %}none;{% endif %}"
+    >Restart to apply settings</button>
+</div>
+
+<label style="margin-top: 30px"
+>Screen reader module status:<br><strong><span id="stat_dt_module"
+>{{ stat_dt_module }}</span></strong></label>
+
+<label style="margin-top: 30px;">How to use:<br><br>1. Ensure you have selected
+the correct language for the screen reader and press the <strong>Start</strong> button to
+load the desktop module. If you haven't used the selected language before,
+it will need to be downloaded from the internet just once and then you
+can use the screen reader with it offline. You can track download progress in
+the log window.<br><br>2. Position your mouse at the top left corner of any text
+you want read and press the shortcut <strong>Alt + ~</strong> (alt + tilde)
+to trigger the selection box (your screen will dim) and then drag and left-click to
+read or right-click to cancel. Note for Apple users: on Mac,
+the <strong>Alt</strong> key is called the <strong>Option</strong> key.<br><br>3.
+Any text you read will show up in the source text box of the translator
+tab.<br><br>4. Use the <strong>Append</strong> option of you want to add new text to the
+source box instead of replacing it every time you use the reader. Use the
+<strong>Auto-translate</strong> option to run the translation every time text is read
+with the reader (this will not be triggered by manually typing into the text box).
+Note: changing these options does not require a restart of the desktop module.<br><br>5.
+If you want to change the reader backend or language, simply change the settings and
+then use the <strong>Restart to apply settings</strong> button.</label>

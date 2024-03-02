@@ -1,0 +1,13 @@
+__pycache__
+
+.venv
+/miniconda
+
+.applock
+.recapture
+/*.txt
+
+/dev_scratchpad.py
+
+/build
+/dist
