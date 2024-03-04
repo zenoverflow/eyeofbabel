@@ -1,7 +1,7 @@
 transformers==4.37.2
 sentencepiece==0.1.99
 huggingface-hub==0.20.3
-ctranslate2==3.24.0
+ctranslate2==4.0.0
 pysimplegui==4.60.5
 pynput==1.7.6
 mss==9.0.1
