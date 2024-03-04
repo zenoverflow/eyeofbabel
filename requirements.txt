@@ -1,0 +1,14 @@
+transformers==4.37.2
+sentencepiece==0.1.99
+huggingface-hub==0.20.3
+ctranslate2==3.24.0
+pysimplegui==4.60.5
+pynput==1.7.6
+mss==9.0.1
+easyocr==1.7.1
+pillow==10.2.0
+manga-ocr==0.1.11
+unidic-lite==1.0.8
+protobuf==4.25.2
+brutalpywebui==0.1.0
+pyinstaller==6.4.0
