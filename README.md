@@ -1,13 +1,13 @@
 # EyeOfBabel
 
-A simple utilitarian **self-hosted translation app** with the added ability to read text directly from images on the screen using a lightweight built-in **screen capture** tool. It also exposes the loaded model via a simple **http API** for use by developers and third-party apps. Built using [BrutalPyWebUI](https://github.com/zenoverflow/brutalpywebui).
+**Privacy-first self-hosted translation app** with the added ability to read text directly from images on the screen using a lightweight built-in **screen capture** tool. It also exposes the loaded model via a simple **http API** for use by developers and third-party apps. Built using [BrutalPyWebUI](https://github.com/zenoverflow/brutalpywebui).
 
 ![App Screenshot](screenshot.png)
 
 ## Platforms
 
--   **Linux (x64)**
 -   **Windows (x64)**
+-   **Linux (x64)**
 
 ## Features
 
@@ -16,7 +16,6 @@ A simple utilitarian **self-hosted translation app** with the added ability to r
 -   Support for switching the screen reader to [**MangaOCR**](https://github.com/kha-white/manga-ocr), which, unlike the name would suggest, is actually very useful for reading Japanese text in a **wide** range of images that **EasyOCR** may or may not handle that well.
 -   Start and stop the desktop reader module on-demand, separately from the translator.
 -   Power-users and developers can use the loaded translation model via the built-in **json-based http API**.
--   **Linux** users can utilize modern **Nvidia GPUs** to run the translation models much faster.
 
 ## Setup (Windows)
 
@@ -69,7 +68,7 @@ cd eyeofbabel
 -   RAM/VRAM for the 10B model: ~10GB.
 -   RAM for any reader model: ~1GB.
 -   CPU: if running on CPU, the faster the better, has lower impact if running on GPU.
--   GPU (optional, recommended, Linux only): any Nvidia GPU with CUDA and compute capability over 3.5. If not sure, [check your GPU on this page](https://developer.nvidia.com/cuda-gpus). Most often your GPU will be in the section named "CUDA-Enabled NVIDIA Quadro and NVIDIA RTX".
+-   GPU (optional, recommended): any Nvidia GPU with CUDA and compute capability over 3.5. If not sure, [check your GPU on this page](https://developer.nvidia.com/cuda-gpus). Most often your GPU will be in the section named "CUDA-Enabled NVIDIA Quadro and NVIDIA RTX".
 
 ## Usage notes
 
@@ -79,7 +78,7 @@ cd eyeofbabel
 -   All reader model downloads happen only once, so they can be used **offline** afterwards.
 -   Model downloads can be tracked in the terminal.
 -   The app runs the web interface on port `11537`. This port should be free on most systems. For power-users, you can set a different port using the usual `PORT` environment variable, or by running the executable from a terminal with the `--port` (or `-p`) parameter like `./start_linux.sh -p 3000` (or `.\app.exe -p 3000` on Windows).
--   On startup, the app loads the smallest model (3B) and runs it on CPU. You can change this with the `--model` (or `-m`) parameter and the `--nvidia` (or `-n`) parameter. For example, to load the 7B model on startup using GPU, you can run the executable from a terminal like `./start_linux.sh --nvidia -m 7` (or just `.\app.exe -m 7` on Windows where GPU is not supported). To load the 10B you use `-m 10`. Note that you can always change the model and device (CPU or GPU) at runtime via the web interface.
+-   On startup, the app loads the smallest model (3B) and runs it on CPU. You can change this with the `--model` (or `-m`) parameter and the `--nvidia` (or `-n`) parameter. For example, to load the 7B model on startup using GPU, you can run the executable from a terminal like `./start_linux.sh --nvidia -m 7` (or `.\app.exe --nvidia -m 7` on Windows). To load the 10B you use `-m 10`. Note that you can always change the model and device (CPU or GPU) at runtime via the web interface.
 -   Windows users have noted that clicking inside the terminal can pause the app. This is actually a standard feature coming from Windows, and it is not a bug. The process can be unpaused by right-clicking or pressing Enter inside the terminal.
 -   Do not run the Linux scripts from outside the folder, or everything will break.
 
@@ -91,7 +90,6 @@ curl -X POST -H "Content-Type: application/json" -d '{"text":"Guten Tag", "lang_
 
 ## Roadmap
 
--   Find out why Ctranslate2 cannot use GPU on Windows. Fix if possible.
 -   Audio input (whispercpp?).
 -   Fix bugs when found.
 -   Sprinkle in some automated testing.

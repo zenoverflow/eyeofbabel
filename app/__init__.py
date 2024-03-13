@@ -28,7 +28,7 @@ import app.util.mode as appmode
 from app.util.lock import ensure_app_lock
 
 
-SUPPORT_NVIDIA = appmode.mode_platform() == appmode.PlatformMode.LINUX
+SUPPORT_NVIDIA = appmode.mode_platform() != appmode.PlatformMode.DARWIN
 
 SUPPORT_TRANSLATION: dict[str, tuple[str, str]] = {
     "zenoverflow/madlad400-3b-mt-int8-float32": (
