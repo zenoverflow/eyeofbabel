@@ -17,6 +17,10 @@
 -   Start and stop the desktop reader module on-demand, separately from the translator.
 -   Power-users and developers can use the loaded translation model via the built-in **json-based http API**.
 
+## Setup (Windows & Linux)
+
+-   Make sure you have installed the latest [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) (including the driver).
+
 ## Setup (Windows)
 
 -   Download the latest zip file for Windows from our [releases page](https://github.com/zenoverflow/eyeofbabel/releases).
